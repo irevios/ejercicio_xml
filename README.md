@@ -10,7 +10,7 @@ El archivo [cursos.xml](cursos.xml) contiene información de los cursos que se o
 * Mostrar la url del mapa de los cursos que tenga el tema dado.
 * Mostrar todos los tipos, subtipos y subsubtipos posibles junto a la cantidad de cursos que tiene cada tipo.
 
-## Árbol del JSON
+## Árbol del XML
 
 ```
 cursos
