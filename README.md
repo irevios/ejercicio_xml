@@ -7,7 +7,7 @@ El archivo [cursos.xml](cursos.xml) contiene información de los cursos que se o
 * Listar el nombre, tema y fecha inicio de todos los cursos.
 * ¿Cuántos cursos tienen el tema "educación" y es para "Adultos"?
 * Mostrar los cursos con sus fechas de inicio y fin que empiezen en el mes dado.
-* Mostrar la url del mapa del curso que tenga el tema dado.
+* Mostrar la url del mapa de los cursos que tenga el tema dado.
 * Mostrar todos los tipos, subtipos y subsubtipos posibles junto a la cantidad de cursos que tiene cada tipo.
 
 ## Árbol del JSON
