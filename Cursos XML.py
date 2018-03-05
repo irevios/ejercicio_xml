@@ -25,6 +25,7 @@ def fecha_por_mes(mes,arbol):
 		if int(m) == mes:
 			curso = (nombre.split( '\n\t\t\t' )[1].split( '\n' )[0],fechaini)
 			lista.append(curso)
+	
 	return lista
 
 def url_mapa(tema,arbol):
@@ -37,4 +38,31 @@ def url_mapa(tema,arbol):
 	
 	return lista
 
-print(url_mapa('Educación',arbol))
+def tipos_cursos(arbol):
+	lista = []
+	tipos = arbol.xpath('//tipos/tipo/text()')
+	subtipos = arbol.xpath('//subtipos/subtipo/text()')
+	subsubtipos = arbol.xpath('//subsubtipos/subsubtipo/text()')
+	for tipo in tipos:
+		if tipo not in lista:
+			lista.append(tipo)
+
+	for subtipo in subtipos:
+		if subtipo not in lista:
+			lista.append(subtipo)
+
+	for subsubtipo in subsubtipos:
+		if subsubtipo not in lista:
+			lista.append(subsubtipo)
+
+	return lista
+
+def cantidad_curso_por_tipo(arbol):
+	lista = []
+	for i in tipos_cursos(arbol):
+		cursos = arbol.xpath('//curso[tipos/tipo="'+i+'" or subtipos/subtipo="'+i+'" or subsubtipos/subsubtipo="'+i+'" ]')
+		lista.append((i, len(cursos)))
+	
+	return lista 
+
+print(cantidad_curso_por_tipo(arbol))
