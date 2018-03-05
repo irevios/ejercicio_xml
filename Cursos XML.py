@@ -13,5 +13,8 @@ def listar_nomb_tema_fechaini( arbol ):
 	
 	return lista
 
+def curso_por_tema_perfil(tema,perfil,arbol):
+	cursos = arbol.xpath('//curso[temas/tema="'+tema+'" and perfiles/perfil="'+perfil+'"]')
+	return len(cursos)
 
-print(listar_nomb_tema_fechaini(arbol))
+print(curso_por_tema_perfil('Educación','Adultos',arbol))
