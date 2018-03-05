@@ -88,7 +88,9 @@ def menu(arbol):
 			tema = input(' Tema: ')
 			for i in url_mapa(tema,arbol):
 				print(' Nombre: {}\n URL: {}\n'.format(i[0],i[1]))
-
+		if opcion == 5:
+			for i in cantidad_curso_por_tipo(arbol):
+				print(' Tipo: {}\n Cantidad de Cursos: {}\n'.format(i[0],i[1]))
 		input('\n Pulse cualquier tecla para continuar.')
 
 arbol = etree.parse('cursos.xml')
