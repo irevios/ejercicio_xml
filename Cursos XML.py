@@ -69,14 +69,25 @@ def menu(arbol):
 	opcion = 0
 	while (opcion != 6):
 		os.system('clear')
-		print(' 1 - Listar Cursos\n 2 - Buscar curso por tema y perfil\n 3 - Buscar curso por mes de inicio\n 4 - URL Mapa del curso por tema\n 5 - Cantidad de cursos por tipos\n 6 - Salir')
+		print(' 1 - Listar Cursos\n 2 - Cantidad de cursos por tema y perfil\n 3 - Buscar curso por mes de inicio\n 4 - URL Mapa del curso por tema\n 5 - Cantidad de cursos por tipos\n 6 - Salir')
 		opcion = int(input(' Opción: '))
 		if opcion == 1:
 			for i in listar_nomb_tema_fechaini(arbol):
 				print(' Nombre: {}\n Temas: {}\n Fecha Inicio: {}\n'.format(i[0],i[1],i[2]))
 		if opcion == 2:
 			tema = input(' Tema: ')
-			perfil = ( ' Perfil: ')
+			perfil = input(' Perfil: ')
+			print(' Cursos con el tema "{}" y el perfil "{}": {}'.format(tema,perfil,curso_por_tema_perfil(tema,perfil,arbol)))
+		
+		if opcion == 3:
+			mes = int(input(' Mes de Inicio: '))
+			for i in fecha_por_mes(mes,arbol):
+				print(' Nombre: {}\n Fecha Inicio: {}\n'.format(i[0],i[1]))
+
+		if opcion == 4:
+			tema = input(' Tema: ')
+			for i in url_mapa(tema,arbol):
+				print(' Nombre: {}\n URL: {}\n'.format(i[0],i[1]))
 
 		input('\n Pulse cualquier tecla para continuar.')
 
