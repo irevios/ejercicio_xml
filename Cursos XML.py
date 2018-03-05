@@ -4,10 +4,10 @@ arbol = etree.parse('cursos.xml')
 def listar_nomb_tema_fechaini( arbol ):
 	lista = []
 	nombres = arbol.xpath( '//curso/nombre/text()' )
-	for i in nombres:
-		temas = arbol.xpath( '//curso[nombre="'+i+'"]/temas/tema/text()' )
-		fechaini = arbol.xpath( '//curso[nombre="'+i+'"]/fechainicio/text()' )[0]
-		curso = ( i.split( '\n\t\t\t' )[1].split( '\n' )[0], temas, fechaini )
+	for nombre in nombres:
+		temas = arbol.xpath( '//curso[nombre="'+nombre+'"]/temas/tema/text()' )
+		fechaini = arbol.xpath( '//curso[nombre="'+nombre+'"]/fechainicio/text()' )[0]
+		curso = ( nombre.split( '\n\t\t\t' )[1].split( '\n' )[0], temas, fechaini )
 		lista.append( curso )
 	
 	return lista
@@ -19,12 +19,22 @@ def curso_por_tema_perfil(tema,perfil,arbol):
 def fecha_por_mes(mes,arbol):
 	lista = []
 	nombres = arbol.xpath('//curso/nombre/text()')
-	for i in nombres:
-		fechaini = arbol.xpath( '//curso[nombre="'+i+'"]/fechainicio/text()' )[0]
+	for nombre in nombres:
+		fechaini = arbol.xpath( '//curso[nombre="'+nombre+'"]/fechainicio/text()' )[0]
 		m = fechaini.split('/')[1]
 		if int(m) == mes:
-			curso = (i.split( '\n\t\t\t' )[1].split( '\n' )[0],fechaini)
+			curso = (nombre.split( '\n\t\t\t' )[1].split( '\n' )[0],fechaini)
 			lista.append(curso)
 	return lista
 
-print(fecha_por_mes(10,arbol))
+def url_mapa(tema,arbol):
+	lista = []
+	nombres = arbol.xpath('//curso[temas/tema="'+tema+'"]/nombre/text()')
+	for nombre in nombres:
+		url = arbol.xpath('//curso[nombre="'+nombre+'"]/equipamientos/equipamiento/url/text()')[0].split('\n')[1].strip('\t')
+		if url != '':
+			lista.append((nombre.split( '\n\t\t\t' )[1].split( '\n' )[0],url))
+	
+	return lista
+
+print(url_mapa('Educación',arbol))
