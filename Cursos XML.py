@@ -65,6 +65,14 @@ def cantidad_curso_por_tipo(arbol):
 	
 	return lista 
 
+def validador_tema(tema,arbol):
+	temas = arbol.xpath( '//curso/temas/tema/text()' )
+	if tema in temas:
+		return true
+	for i in temas:
+		if tema.upper() == i.upper():
+			return true
+
 def menu(arbol):
 	opcion = 0
 	while (opcion != 6):
@@ -91,7 +99,8 @@ def menu(arbol):
 		if opcion == 5:
 			for i in cantidad_curso_por_tipo(arbol):
 				print(' Tipo: {}\n Cantidad de Cursos: {}\n'.format(i[0],i[1]))
+		
 		input('\n Pulse cualquier tecla para continuar.')
 
 arbol = etree.parse('cursos.xml')
-menu(arbol)
+menu(validador_tema('educacion',arbol))
