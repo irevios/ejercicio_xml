@@ -1,5 +1,5 @@
+import os
 from lxml import etree
-arbol = etree.parse('cursos.xml')
 
 def listar_nomb_tema_fechaini( arbol ):
 	lista = []
@@ -65,4 +65,20 @@ def cantidad_curso_por_tipo(arbol):
 	
 	return lista 
 
-print(cantidad_curso_por_tipo(arbol))
+def menu(arbol):
+	opcion = 0
+	while (opcion != 6):
+		os.system('clear')
+		print(' 1 - Listar Cursos\n 2 - Buscar curso por tema y perfil\n 3 - Buscar curso por mes de inicio\n 4 - URL Mapa del curso por tema\n 5 - Cantidad de cursos por tipos\n 6 - Salir')
+		opcion = int(input(' Opción: '))
+		if opcion == 1:
+			for i in listar_nomb_tema_fechaini(arbol):
+				print(' Nombre: {}\n Temas: {}\n Fecha Inicio: {}\n'.format(i[0],i[1],i[2]))
+		if opcion == 2:
+			tema = input(' Tema: ')
+			perfil = ( ' Perfil: ')
+
+		input('\n Pulse cualquier tecla para continuar.')
+
+arbol = etree.parse('cursos.xml')
+menu(arbol)
